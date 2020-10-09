@@ -3,9 +3,10 @@
 const userSettings = document.querySelector(`.setup`);
 const setupOpen = document.querySelector(`.setup-open`);
 const setupClose = userSettings.querySelector(`.setup-close`);
+const userName = document.querySelector(`.setup-user-name`);
 
 const onPopupEscPress = function (evt) {
-  if (evt.key === `Escape`) {
+  if (evt.key === `Escape` && evt.target !== userName) {
     evt.preventDefault();
     closePopup();
   }
@@ -63,20 +64,27 @@ userNameInput.addEventListener(`input`, function () {
 // Изменение цвета одежды глаз и фаербола
 
 const setupWizard = document.querySelector(`.setup-wizard`);
+const setupPlayer = document.querySelector(`.setup-player`);
 const wizardCoat = setupWizard.querySelector(`.wizard-coat`);
 const wizardEyes = setupWizard.querySelector(`.wizard-eyes`);
 const wizardFireball = document.querySelector(`.setup-fireball-wrap`);
+const wizardCoatInput = setupPlayer.querySelector(`[name = "coat-color"]`);
+const wizardEyesInput = setupPlayer.querySelector(`[name = "eyes-color"]`);
+const wizardFireBallInput = wizardFireball.querySelector(`[name = "fireball-color"]`);
 
 wizardCoat.addEventListener(`click`, function () {
   wizardCoat.style.fill = getRandomArrayElement(COATS_COLOR);
+  wizardCoatInput.value = wizardCoat.style.fill;
 });
 
 wizardEyes.addEventListener(`click`, function () {
   wizardEyes.style.fill = getRandomArrayElement(EYES_COLOR);
+  wizardEyesInput.value = wizardEyes.style.fill;
 });
 
 wizardFireball.addEventListener(`click`, function () {
   wizardFireball.style.backgroundColor = getRandomArrayElement(FIREBALL_COLOR);
+  wizardFireBallInput.value = wizardFireball.style.backgroundColor;
 });
 
 document.querySelector(`.setup-similar`).classList.remove(`hidden`);
